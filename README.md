@@ -8,6 +8,7 @@ Este proyecto está construido utilizando las siguientes tecnologías:
 - [React](https://reactjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Vite](https://vitejs.dev/)
+- [Bootstrap](https://getbootstrap.com/) *(Integrado vía CDN para estilos, evitando dependencias innecesarias)*
 
 ## 📦 Instalación y Configuración
 
