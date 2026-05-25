@@ -1,8 +1,9 @@
-import { useMemo } from "react";
+import { useMemo, useState, useCallback } from "react";
 import Button from "../../atoms/Button";
 import Card from "../../atoms/Card";
 import Text from "../../atoms/Text";
 import Table, { type Column } from "../../atoms/Table";
+import Dialog from "../../molecules/Dialog";
 
 interface User {
     id: number;
@@ -19,6 +20,8 @@ const statusBadge: Record<string, string> = {
 };
 
 function UsersPage() {
+    const [selectedUser, setSelectedUser] = useState<User | null>(null);
+
     const users = useMemo<User[]>(() => [{
         id: 1,
         name: "Juan Pérez",
@@ -86,10 +89,20 @@ function UsersPage() {
         render: (row) => (
             <>
                 <Button className="btn-sm me-1" onClick={() => console.log("Edit", row.id)}>Editar</Button>
-                <Button className="btn-sm" variant="danger" onClick={() => console.log("Delete", row.id)}>Eliminar</Button>
+                <Button className="btn-sm" variant="danger" onClick={() => setSelectedUser(row as unknown as User)}>Eliminar</Button>
             </>
         ),
     }], []);
+
+    const handleConfirmDelete = useCallback(() => {
+        if (!selectedUser) return;
+        console.log("Delete confirmed for user:", selectedUser.id);
+        setSelectedUser(null);
+    }, [selectedUser]);
+
+    const handleCancelDelete = useCallback(() => {
+        setSelectedUser(null);
+    }, []);
 
     return <div className="row justify-content-center">
         <div className="col-12">
@@ -98,6 +111,19 @@ function UsersPage() {
                 <Table columns={columns} rows={users as unknown as Record<string, unknown>[]} />
             </Card>
         </div>
+        <Dialog
+            show={selectedUser !== null}
+            onClose={handleCancelDelete}
+            title="Confirmar eliminación"
+            footer={
+                <>
+                    <Button variant="secondary" onClick={handleCancelDelete}>Cancelar</Button>
+                    <Button variant="danger" onClick={handleConfirmDelete}>Eliminar</Button>
+                </>
+            }
+        >
+            <Text>¿Estás seguro de que deseas eliminar a <strong>{selectedUser?.name}</strong>?</Text>
+        </Dialog>
     </div>
 }
 
