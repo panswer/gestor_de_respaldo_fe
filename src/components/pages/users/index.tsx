@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import Button from "../../atoms/Button";
 import Card from "../../atoms/Card";
 import Text from "../../atoms/Text";
 import Table, { type Column } from "../../atoms/Table";
@@ -80,6 +81,14 @@ function UsersPage() {
     }, {
         key: "last_message",
         header: "Último mensaje",
+    }, {
+        header: "Acciones",
+        render: (row) => (
+            <>
+                <Button className="btn-sm me-1" onClick={() => console.log("Edit", row.id)}>Editar</Button>
+                <Button className="btn-sm" variant="danger" onClick={() => console.log("Delete", row.id)}>Eliminar</Button>
+            </>
+        ),
     }], []);
 
     return <div className="row justify-content-center">

@@ -1,7 +1,7 @@
 import { useMemo, type ReactNode } from "react";
 
 export interface Column {
-    key: string;
+    key?: string;
     header: string;
     render?: (row: Record<string, unknown>) => ReactNode;
 }
@@ -21,7 +21,7 @@ function Table({
         <thead className="table-dark">
             <tr>
                 {columns.map((col) => (
-                    <th key={col.key} scope="col">{col.header}</th>
+                    <th key={col.key ?? col.header} scope="col">{col.header}</th>
                 ))}
             </tr>
         </thead>,
@@ -32,8 +32,8 @@ function Table({
             {rows.map((row, rowIndex) => (
                 <tr key={rowIndex}>
                     {columns.map((col) => (
-                        <td key={col.key}>
-                            {col.render ? col.render(row) : String(row[col.key] ?? '')}
+                        <td key={col.key ?? col.header}>
+                            {col.render ? col.render(row) : String(row[col.key!] ?? '')}
                         </td>
                     ))}
                 </tr>
