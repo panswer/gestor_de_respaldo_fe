@@ -1,17 +1,25 @@
 import { createBrowserRouter } from "react-router";
+import GuestTemplate from "./components/templates/GuestTemplate";
+import AuthTemplate from "./components/templates/AuthTemplate";
 import SignInPage from "./components/pages/sign-in";
 import SignUpPage from "./components/pages/sign-up";
 import HomePage from "./components/pages/home";
 import { validateSession } from "./middlewares/auth";
 
 export const router = createBrowserRouter([{
-    Component: SignInPage,
-    path: "/",
+    Component: GuestTemplate,
+    children: [{
+        Component: SignInPage,
+        path: "/",
+    }, {
+        Component: SignUpPage,
+        path: "/sign-up",
+    }],
 }, {
-    Component: SignUpPage,
-    path: "/sign-up",
-}, {
-    Component: HomePage,
-    path: "/home",
-    middleware: [validateSession]
+    Component: AuthTemplate,
+    children: [{
+        Component: HomePage,
+        path: "/home",
+        middleware: [validateSession],
+    }],
 }]);
