@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { Outlet, useNavigate } from "react-router";
+import { NavLink, Outlet, useNavigate } from "react-router";
 import Button from "../../atoms/Button";
 
 function AuthTemplate() {
@@ -10,9 +10,21 @@ function AuthTemplate() {
         navigate('/', { replace: true });
     }, [navigate]);
 
+    const linkClass = useCallback(({ isActive }: { isActive: boolean }) =>
+        `nav-link ${isActive ? 'active fw-bold' : ''}`,
+    []);
+
     return <>
-        <nav className="navbar bg-body-tertiary px-3">
-            <span className="navbar-brand mb-0 h1">Gestor de Respaldo</span>
+        <nav className="navbar navbar-expand bg-body-tertiary px-3">
+            <span className="navbar-brand mb-0 h1 me-4">Gestor de Respaldo</span>
+            <ul className="navbar-nav me-auto">
+                <li className="nav-item">
+                    <NavLink to="/home" className={linkClass} end>Home</NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink to="/users" className={linkClass}>Usuarios</NavLink>
+                </li>
+            </ul>
             <Button onClick={handleSignOut}>Cerrar sesión</Button>
         </nav>
         <main className="container mt-4">
