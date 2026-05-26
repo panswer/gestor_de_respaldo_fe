@@ -1,6 +1,6 @@
 import { RouterProvider } from 'react-router';
 import { router } from './routes';
-import ToastContainer from './components/molecules/ToastContainer';
+import ToastContainer from './components/organisms/ToastContainer';
 import './App.css';
 
 function App() {
