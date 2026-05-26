@@ -4,6 +4,8 @@ import Card from "../../atoms/Card";
 import Text from "../../atoms/Text";
 import Table, { type Column } from "../../atoms/Table";
 import Dialog from "../../molecules/Dialog";
+import { useNotificationStore } from "../../../stores/notificationStore";
+
 
 interface User {
     id: number;
@@ -20,6 +22,7 @@ const statusBadge: Record<string, string> = {
 };
 
 function UsersPage() {
+    const notify = useNotificationStore((s) => s.notify);
     const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
     const users = useMemo<User[]>(() => [{
@@ -98,7 +101,8 @@ function UsersPage() {
         if (!selectedUser) return;
         console.log("Delete confirmed for user:", selectedUser.id);
         setSelectedUser(null);
-    }, [selectedUser]);
+        notify({ message: "Usuario eliminado correctamente", variant: "success" });
+    }, [selectedUser, notify]);
 
     const handleCancelDelete = useCallback(() => {
         setSelectedUser(null);
