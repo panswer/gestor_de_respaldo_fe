@@ -105,8 +105,8 @@ function UsersPage() {
         header: "Acciones",
         render: (row) => (
             <>
-                <Button className="btn-sm me-1" onClick={() => console.log("Edit", row.id)}>Editar</Button>
-                <Button className="btn-sm" variant="danger" onClick={() => setSelectedUser(row as unknown as User)}>Eliminar</Button>
+                <Button className="btn-sm me-1" icon="pencil" onClick={() => console.log("Edit", row.id)}>Editar</Button>
+                <Button className="btn-sm" variant="danger" icon="trash" onClick={() => setSelectedUser(row as unknown as User)}>Eliminar</Button>
             </>
         ),
     }], []);
@@ -146,7 +146,7 @@ function UsersPage() {
             footer={
                 <>
                     <Button variant="secondary" onClick={handleCancelDelete}>Cancelar</Button>
-                    <Button variant="danger" onClick={handleConfirmDelete}>Eliminar</Button>
+                    <Button variant="danger" icon="trash" onClick={handleConfirmDelete}>Eliminar</Button>
                 </>
             }
         >

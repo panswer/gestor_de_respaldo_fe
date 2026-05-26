@@ -19,6 +19,7 @@ export interface ButtonProps {
     children: ReactNode;
     className?: string;
     disabled?: boolean;
+    icon?: string;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     variant?: VariantBtn;
     type?: HTMLButtonElement['type'];
@@ -28,6 +29,7 @@ function Button({
     children,
     className,
     disabled,
+    icon,
     onClick,
     variant,
     type,
@@ -40,6 +42,7 @@ function Button({
         [className, variant]);
 
     return <button className={classNames} disabled={disabled} onClick={onClick} type={type}>
+        {icon && <i className={`bi bi-${icon} me-1`} />}
         {children}
     </button>
 }

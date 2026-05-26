@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router";
 import Button from "../../atoms/Button";
+import Icon from "../../atoms/Icon";
 
 function AuthTemplate() {
     const navigate = useNavigate();
@@ -19,13 +20,13 @@ function AuthTemplate() {
             <span className="navbar-brand mb-0 h1 me-4">Gestor de Respaldo</span>
             <ul className="navbar-nav me-auto">
                 <li className="nav-item">
-                    <NavLink to="/home" className={linkClass} end>Home</NavLink>
+                    <NavLink to="/home" className={linkClass} end><Icon name="house" className="me-1" />Home</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink to="/users" className={linkClass}>Usuarios</NavLink>
+                    <NavLink to="/users" className={linkClass}><Icon name="people" className="me-1" />Usuarios</NavLink>
                 </li>
             </ul>
-            <Button onClick={handleSignOut}>Cerrar sesión</Button>
+            <Button icon="box-arrow-right" onClick={handleSignOut}>Cerrar sesión</Button>
         </nav>
         <main className="container mt-4">
             <Outlet />

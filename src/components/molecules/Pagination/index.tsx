@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import Icon from "../../atoms/Icon";
 
 interface PaginationProps {
     currentPage: number;
@@ -45,8 +46,8 @@ function Pagination({
         <nav aria-label="Page navigation">
             <ul className="pagination mb-0">
                 <li className={`page-item${currentPage === 1 ? " disabled" : ""}`}>
-                    <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); onPageChange(currentPage - 1); }}>
-                        Anterior
+                    <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); onPageChange(currentPage - 1); }} aria-label="Anterior">
+                        <Icon name="chevron-left" />
                     </a>
                 </li>
                 {pages.map((page, index) =>
@@ -63,8 +64,8 @@ function Pagination({
                     ),
                 )}
                 <li className={`page-item${currentPage === totalPages ? " disabled" : ""}`}>
-                    <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); onPageChange(currentPage + 1); }}>
-                        Siguiente
+                    <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); onPageChange(currentPage + 1); }} aria-label="Siguiente">
+                        <Icon name="chevron-right" />
                     </a>
                 </li>
             </ul>
