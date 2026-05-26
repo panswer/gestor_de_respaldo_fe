@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router";
 import Button from "../../atoms/Button";
 import Icon from "../../atoms/Icon";
+import NotificationBell from "../../molecules/NotificationBell";
 
 function AuthTemplate() {
     const navigate = useNavigate();
@@ -26,6 +27,7 @@ function AuthTemplate() {
                     <NavLink to="/users" className={linkClass}><Icon name="people" className="me-1" />Usuarios</NavLink>
                 </li>
             </ul>
+            <NotificationBell />
             <Button icon="box-arrow-right" onClick={handleSignOut}>Cerrar sesión</Button>
         </nav>
         <main className="container mt-4">
