@@ -1,9 +1,11 @@
-import Text from "../../atoms/Text";
+import Chat from "../../organisms/Chat";
 
 function HomePage() {
-    return <div className="row">
-        <div className="col d-flex flex-column justify-content-center align-items-center gap-3">
-            <Text className="fs-1">Home Page</Text>
+    return <div className="row h-100">
+        <div className="col">
+            <h3 className="mb-0">Asistente Virtual</h3>
+            <hr />
+            <Chat />
         </div>
     </div>
 }
