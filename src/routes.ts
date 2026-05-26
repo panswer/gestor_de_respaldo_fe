@@ -5,6 +5,7 @@ import SignInPage from "./components/pages/sign-in";
 import SignUpPage from "./components/pages/sign-up";
 import HomePage from "./components/pages/home";
 import UsersPage from "./components/pages/users";
+import NotFoundPage from "./components/pages/not-found";
 import { validateSession } from "./middlewares/auth";
 
 export const router = createBrowserRouter([{
@@ -27,4 +28,7 @@ export const router = createBrowserRouter([{
         path: "/users",
         middleware: [validateSession],
     }],
+}, {
+    Component: NotFoundPage,
+    path: "*",
 }]);
