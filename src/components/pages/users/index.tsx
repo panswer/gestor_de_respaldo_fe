@@ -5,6 +5,7 @@ import Text from "../../atoms/Text";
 import Table, { type Column } from "../../atoms/Table";
 import Dialog from "../../molecules/Dialog";
 import { useNotificationStore } from "../../../stores/notificationStore";
+import Pagination from "../../molecules/Pagination";
 
 
 interface User {
@@ -21,9 +22,12 @@ const statusBadge: Record<string, string> = {
     busy: "bg-warning text-dark",
 };
 
+const PAGE_SIZE = 5;
+
 function UsersPage() {
     const notify = useNotificationStore((s) => s.notify);
     const [selectedUser, setSelectedUser] = useState<User | null>(null);
+    const [page, setPage] = useState(1);
 
     const users = useMemo<User[]>(() => [{
         id: 1,
@@ -62,6 +66,16 @@ function UsersPage() {
         chat_status: "online",
         last_message: "Corrigiendo errores del reporte",
     }], []);
+
+    const totalPages = Math.ceil(users.length / PAGE_SIZE);
+    const pagedUsers = useMemo(
+        () => users.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
+        [users, page],
+    );
+
+    const handlePageChange = useCallback((p: number) => {
+        setPage(p);
+    }, []);
 
     const columns = useMemo<Column[]>(() => [{
         key: "id",
@@ -112,7 +126,17 @@ function UsersPage() {
         <div className="col-12">
             <Card>
                 <Text className="fs-3 mb-3">Usuarios</Text>
-                <Table columns={columns} rows={users as unknown as Record<string, unknown>[]} />
+                <Table columns={columns} rows={pagedUsers as unknown as Record<string, unknown>[]} />
+                <div className="d-flex justify-content-between align-items-center mt-3">
+                    <Text className="text-muted small">
+                        Mostrando {Math.min((page - 1) * PAGE_SIZE + 1, users.length)}–{Math.min(page * PAGE_SIZE, users.length)} de {users.length}
+                    </Text>
+                    <Pagination
+                        currentPage={page}
+                        totalPages={totalPages}
+                        onPageChange={handlePageChange}
+                    />
+                </div>
             </Card>
         </div>
         <Dialog
