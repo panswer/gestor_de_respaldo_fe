@@ -91,7 +91,7 @@ function NotificationBell() {
                         notifications.map((n) => (
                             <div
                                 key={n.id}
-                                className={`dropdown-item border-bottom ${n.read ? "" : "bg-light"}`}
+                                className={`dropdown-item border-bottom ${n.read ? "" : "bg-body-tertiary"}`}
                                 onClick={() => handleNotificationClick(n)}
                                 style={{ cursor: "pointer" }}
                             >

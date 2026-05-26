@@ -18,7 +18,7 @@ function Table({
     className,
 }: TableProps) {
     const thead = useMemo(() =>
-        <thead className="table-dark">
+        <thead className="table">
             <tr>
                 {columns.map((col) => (
                     <th key={col.key ?? col.header} scope="col">{col.header}</th>

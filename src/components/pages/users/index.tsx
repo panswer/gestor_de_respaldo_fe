@@ -19,7 +19,7 @@ interface User {
 const statusBadge: Record<string, string> = {
     online: "bg-success",
     offline: "bg-secondary",
-    busy: "bg-warning text-dark",
+    busy: "text-bg-warning",
 };
 
 const PAGE_SIZE = 5;
@@ -88,7 +88,7 @@ function UsersPage() {
         header: "Rol",
         render: (row) => {
             const rol = String(row.rol);
-            const badge = rol === "admin" ? "bg-primary" : rol === "editor" ? "bg-info text-dark" : "bg-secondary";
+            const badge = rol === "admin" ? "text-bg-primary" : rol === "editor" ? "text-bg-info" : "text-bg-secondary";
             return <span className={`badge ${badge}`}>{rol}</span>;
         },
     }, {

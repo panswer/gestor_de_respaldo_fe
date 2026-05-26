@@ -3,6 +3,7 @@ import { NavLink, Outlet, useNavigate } from "react-router";
 import Button from "../../atoms/Button";
 import Icon from "../../atoms/Icon";
 import NotificationBell from "../../molecules/NotificationBell";
+import ThemeToggle from "../../atoms/ThemeToggle";
 
 function AuthTemplate() {
     const navigate = useNavigate();
@@ -28,6 +29,7 @@ function AuthTemplate() {
                 </li>
             </ul>
             <NotificationBell />
+            <ThemeToggle />
             <Button icon="box-arrow-right" onClick={handleSignOut}>Cerrar sesión</Button>
         </nav>
         <main className="container mt-4">
