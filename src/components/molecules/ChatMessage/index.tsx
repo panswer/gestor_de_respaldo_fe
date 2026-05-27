@@ -18,7 +18,7 @@ function ChatMessage({ message }: ChatMessageProps) {
     return (
         <div className={`d-flex ${isUser ? "justify-content-end" : "justify-content-start"} mb-3`}>
             <div
-                className={`rounded-3 px-3 py-2 ${isUser ? "bg-primary text-white" : "bg-light text-dark"}`}
+                className={`rounded-3 px-3 py-2 ${isUser ? "bg-primary text-white" : "bg-body-tertiary text-body"}`}
                 style={{ maxWidth: "75%" }}
             >
                 <div className="text-break">{message.text}</div>
