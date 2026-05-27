@@ -14,7 +14,7 @@ function Chat() {
     }, [messages, loading]);
 
     return (
-        <div className="d-flex flex-column h-100" style={{ minHeight: "70vh" }}>
+        <div className="d-flex flex-column" style={{ height: "70vh" }}>
             <div className="flex-grow-1 overflow-auto mb-3 p-3 border rounded-3 bg-body-tertiary">
                 {messages.length === 0 && (
                     <div className="d-flex justify-content-center align-items-center h-100 text-muted">
