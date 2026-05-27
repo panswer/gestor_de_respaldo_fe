@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { useChatStore } from "../../../stores/chatStore";
 import ChatMessage from "../../molecules/ChatMessage";
 import ChatInput from "../../molecules/ChatInput";
+import TypingIndicator from "../../atoms/TypingIndicator";
 
 function Chat() {
     const messages = useChatStore((s) => s.messages);
@@ -25,17 +26,7 @@ function Chat() {
                     <ChatMessage key={msg.id} message={msg} />
                 ))}
 
-                {loading && (
-                    <div className="d-flex justify-content-start mb-3">
-                        <div className="bg-light rounded-3 px-3 py-2">
-                            <span className="typing-indicator">
-                                <span className="dot" />
-                                <span className="dot" />
-                                <span className="dot" />
-                            </span>
-                        </div>
-                    </div>
-                )}
+                {loading && <TypingIndicator />}
 
                 <div ref={bottomRef} />
             </div>
